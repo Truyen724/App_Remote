@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet,Button,ImageBackground } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+
+
 const image = '../img/login.jpg';
 class LoginScreen extends Component {
   constructor(props) {
@@ -18,14 +20,17 @@ class LoginScreen extends Component {
     console.log('Đăng nhập với email:', this.state.email, 'và mật khẩu:',  this.state.password);
     if(this.state.email=="Truyen" & this.state.password=="123456")
     {
-      this.props.navigation.navigate('Main')
+      this.props.navigation.replace('Main',{data:"Truyen"})
     }
     else
     {
       console.log('Sai tài khoản hoặc mật khâu');
     }
   };
-
+componentDidMount()
+{
+  
+}
   render() {
     return (
      
@@ -53,7 +58,7 @@ class LoginScreen extends Component {
 
         <TouchableOpacity style={styles.loginButton} onPress={this.handleLogin}>
           <LinearGradient
-            colors={['#4ad0d7','#00fbfc']} // Màu gradient theo thứ tự từ trên xuống
+            colors={['#00fbfc','#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
             style={styles.gradient}
       >
           <Text style={styles.signupButtonText}>Đăng Nhập</Text>
@@ -64,7 +69,7 @@ class LoginScreen extends Component {
 
         <TouchableOpacity style={styles.loginButton} onPress={this.handleSignup}>
           <LinearGradient
-            colors={['#4ad0d7','#00fbfc']} // Màu gradient theo thứ tự từ trên xuống
+            colors={['#00fbfc','#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
             style={styles.gradient}
           >
           <Text style={styles.signupButtonText}>Đăng ký</Text>
@@ -135,7 +140,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius:10
+    borderRadius:10,
+    opacity:0.5
   },
   signupButtonText: {
     color: 'gray',
