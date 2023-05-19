@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,Button } from 'react-native';
-
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,Button,ImageBackground } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+const image = '../img/login.jpg';
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
@@ -9,12 +10,15 @@ class LoginScreen extends Component {
       password: '123456',
     };
   }
+  handleSignup = () =>{
+    this.props.navigation.navigate('Signup')
+  }
 
   handleLogin = () => {
     console.log('Đăng nhập với email:', this.state.email, 'và mật khẩu:',  this.state.password);
     if(this.state.email=="Truyen" & this.state.password=="123456")
     {
-      this.props.navigation.navigate('Main', { data:"Xin ch" } )
+      this.props.navigation.navigate('Main')
     }
     else
     {
@@ -24,8 +28,12 @@ class LoginScreen extends Component {
 
   render() {
     return (
-
-      <View style={styles.container}>
+     
+      <LinearGradient
+      colors={['#c6ffdd', '#fbd786','#f7797d']} 
+      style={styles.container}
+    >
+        
         <Text style={styles.title}>Login</Text>
 
         <TextInput
@@ -42,26 +50,28 @@ class LoginScreen extends Component {
           value={this.state.password}
           onChangeText={(password) => this.setState({ password })}
         />
-        <View style={styles.buttonArea}>
-          <Button
-            style = {styles.loginButton}
-            title="Đăng nhập"
-            onPress={this.handleLogin}
-          />
+
+        <TouchableOpacity style={styles.loginButton} onPress={this.handleLogin}>
+          <LinearGradient
+            colors={['#4ad0d7','#00fbfc']} // Màu gradient theo thứ tự từ trên xuống
+            style={styles.gradient}
+      >
+          <Text style={styles.signupButtonText}>Đăng Nhập</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        <View>
         </View>
 
-        <View  style={styles.buttonArea}>
-        <Button
-            style = {styles.loginButton}
-            title="Don't have an account? Sign Up"
-            onPress={() => this.props.navigation.navigate('Signup')}
-          />
-        </View>
+        <TouchableOpacity style={styles.loginButton} onPress={this.handleSignup}>
+          <LinearGradient
+            colors={['#4ad0d7','#00fbfc']} // Màu gradient theo thứ tự từ trên xuống
+            style={styles.gradient}
+          >
+          <Text style={styles.signupButtonText}>Đăng ký</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        </LinearGradient>
 
-        
-
-
-      </View>
     );
   }
 }
@@ -78,20 +88,29 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
+  image: {
+    width: '100%',
+    height:'100%',
+    fontSize: 60,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
   input: {
     width: '100%',
     height: 40,
-    borderColor: 'gray',
+    
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
+    fontSize:19
   },
 
   loginButtonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+
   },
 
   buttonArea: {
@@ -105,13 +124,23 @@ const styles = StyleSheet.create({
   },
 
   loginButton: {
-    width: '100%',
+    width: '70%',
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
+    fontWeight: 'bold',
+    borderRadius:10
+  },
+  gradient: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius:10
+  },
+  signupButtonText: {
+    color: 'gray',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

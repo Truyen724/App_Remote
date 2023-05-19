@@ -6,33 +6,28 @@ class MainScreen extends Component {
     super(props);
     this.state = {
         fullName:"",
-        data:''
+        wifiname:"",
+        password:"",
+         serverName:""
+
     };
-  
   }
-  componentDidMount(){
-    const { data } = this.props.route.params;
-    
-    this.setState({
-    data
-    });
-    }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}> Thiết lập wifi</Text>
         <TextInput
           style={styles.input}
-          placeholder={this.state.data}
-        //   value={this.state.data}
-          // onChangeText={(fullName) => this.setState({ fullName })}
+          placeholder="Nhập vào tên wifi"
+          value={this.state.wifiname}
+          onChangeText={(wifiname) => this.setState({ wifiname })}
         />
-
-        {/* <TextInput
+       <TextInput
           style={styles.input}
           placeholder="Nhập mật khẩu wifi"
-          value={this.state.data.email}
-          onChangeText={(email) => this.setState({ email })}
+          value={this.state.password}
+          onChangeText={(password) => this.setState({ password })}
         />
         <TouchableOpacity style={styles.signupButton} onPress={this.handleSignup}>
           <Text style={styles.signupButtonText}>Kết nối tới wifi</Text>
@@ -42,13 +37,12 @@ class MainScreen extends Component {
         <TextInput
           style={styles.input}
           placeholder="Đường Dẫn Tới Server"
-          secureTextEntry
-          value={this.state.password}
-          onChangeText={(password) => this.setState({ password })}
+          value={this.state.serverName}
+          onChangeText={(serverName) => this.setState({ serverName })}
         />
         <TouchableOpacity style={styles.signupButton} onPress={this.handleSignup}>
           <Text style={styles.signupButtonText}>Thay đổi thông tin server</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
     );
   }
