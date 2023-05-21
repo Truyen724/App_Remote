@@ -20,7 +20,7 @@ class LoginScreen extends Component {
     console.log('Đăng nhập với email:', this.state.email, 'và mật khẩu:',  this.state.password);
     if(this.state.email=="Truyen" & this.state.password=="123456")
     {
-      this.props.navigation.replace('Mytab',{data:"Truyen"})
+      this.props.navigation.replace('Mytab',{data:"helloo"})
     }
     else
     {
