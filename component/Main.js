@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert 
 import { NavigationActions, CommonActions } from 'react-navigation';
 class MainScreen extends Component {
   constructor(props) {
-    super(props);   
+    super(props);
     this.state = {
       fullName: "",
       wifiname: "",
@@ -14,7 +14,7 @@ class MainScreen extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props.route.params.data)
+    // console.log(this.props.route.params.data)
   }
   reset_Nav = () => {
     this.props.navigation.reset({
@@ -39,7 +39,7 @@ class MainScreen extends Component {
     }
     catch {
       // console.error(error);
-      console.log("lỗi ")
+      Alert.alert("lỗi ")
     }
   }
   set_password = async () => {
@@ -54,15 +54,14 @@ class MainScreen extends Component {
       });
       if (!response.ok) {
         // Xử lý lỗi theo cách khác
-        console.log('Request failed:', response.status);
+        Alert.alert("lỗi ")
         return;
       }
-      const data = await response.text();
-      console.log(data);
+      Alert.alert("lỗi ")
     }
     catch {
       // console.error(error);
-      console.log("lỗi ")
+      Alert.alert("lỗi ")
     }
   }
   set_server = async () => {
@@ -77,7 +76,8 @@ class MainScreen extends Component {
       });
       if (!response.ok) {
         // Xử lý lỗi theo cách khác
-        console.log('Request failed:', response.status);
+        console.log('Request failed:');
+        Alert.alert("lỗi ")
         return;
       }
       const data = await response.text();
@@ -88,7 +88,7 @@ class MainScreen extends Component {
       console.log("lỗi ")
     }
   }
-  check_secret_key  = () => {
+  check_secret_key = () => {
     if (this.state.secret_password == "truyen") {
       this.set_id_device()
     }
@@ -109,14 +109,18 @@ class MainScreen extends Component {
       if (!response.ok) {
         // Xử lý lỗi theo cách khác
         console.log('Request failed:', response.status);
+        Alert.alert("Looxiii rồi ")
         return;
       }
       const data = await response.text();
       console.log(data);
+      Alert.alert("Looxiii rồi ")
+
     }
     catch {
       // console.error(error);
       console.log("lỗi ")
+      Alert.alert("Looxiii rồi ")
     }
   }
   set_wifi_pass = () => {
@@ -127,6 +131,7 @@ class MainScreen extends Component {
     }
     catch {
       console.log("Lỗi")
+      Alert.alert("Looxiii rồi ")
     }
   }
   render() {
@@ -149,7 +154,7 @@ class MainScreen extends Component {
             value={this.state.password}
             onChangeText={(password) => this.setState({ password })}
           />
-          <TouchableOpacity style={styles.signupButton} onPress={this.set_wifi&&this.set_password}>
+          <TouchableOpacity style={styles.signupButton} onPress={this.set_wifi && this.set_password}>
             <Text style={styles.signupButtonText}>Kết nối tới wifi</Text>
           </TouchableOpacity>
           <View style={{ marginTop: 20 }}></View>

@@ -20,7 +20,7 @@ class LoginScreen extends Component {
     console.log('Đăng nhập với email:', this.state.email, 'và mật khẩu:',  this.state.password);
     if(this.state.email=="Truyen" & this.state.password=="123456")
     {
-      this.props.navigation.replace('Main',{data:"Truyen"})
+      this.props.navigation.replace('Mytab',{data:"Truyen"})
     }
     else
     {
@@ -33,7 +33,6 @@ componentDidMount()
 }
   render() {
     return (
-     
       <LinearGradient
       colors={['#c6ffdd', '#fbd786','#f7797d']} 
       style={styles.container}
