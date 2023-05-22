@@ -1,35 +1,26 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet,Button,ImageBackground } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
-
 const image = '../img/login.jpg';
-class LoginScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: 'Truyen',
-      password: '123456',
-    };
-  }
-  handleSignup = () =>{
-    this.props.navigation.navigate('Signup')
-  }
-  handleLogin = () => {
-    console.log('Đăng nhập với email:', this.state.email, 'và mật khẩu:',  this.state.password);
-    if(this.state.password=="123456")
-    {
-      this.props.navigation.replace('Mytab',{data:{email:this.state.email,password:this.state.password}})
-    }
-    else
-    {
-      console.log('Sai tài khoản hoặc mật khâu');
-    }
-  };
-componentDidMount()
-{
-  
-}
+class LogoutScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email:this.props.route.params.data.email,
+            password:this.props.route.params.data.password
+        };
+      }
+      componentDidMount()
+      {
+        console.log(this.state.email);
+      }
+      HomeScreen = () => {
+        this.props.navigation.navigate('Main')
+
+      }
+      signIn = () => {
+        this.props.navigation.replace('Login')
+      }
   render() {
     return (
       <LinearGradient
@@ -37,39 +28,25 @@ componentDidMount()
       style={styles.container}
     >
         
-        <Text style={styles.title}>Login</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={this.state.email}
-          onChangeText={(email) => this.setState({ email })}
-        />
-
-        <TextInput
-          style={styles.input}
-          placeholder="Mật khẩu"
-          secureTextEntry
-          value={this.state.password}
-          onChangeText={(password) => this.setState({ password })}
-        />
-
-        <TouchableOpacity style={styles.loginButton} onPress={this.handleLogin}>
+        <Text style={styles.title}>Log Out</Text>
+        <Text style={styles.text} >{this.state.email}</Text>
+        <TouchableOpacity style={styles.loginButton} onPress={this.HomeScreen}>
           <LinearGradient
             colors={['#00fbfc','#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
             style={styles.gradient}
       >
-          <Text style={styles.signupButtonText}>Đăng Nhập</Text>
+          <Text style={styles.signupButtonText}>Quay lại</Text>
           </LinearGradient>
         </TouchableOpacity>
         <View>
         </View>
 
-        <TouchableOpacity style={styles.loginButton} onPress={this.handleSignup}>
+        <TouchableOpacity style={styles.loginButton} onPress={this.signIn}>
           <LinearGradient
             colors={['#00fbfc','#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
             style={styles.gradient}
           >
-          <Text style={styles.signupButtonText}>Đăng ký</Text>
+          <Text style={styles.signupButtonText}>Log Out</Text>
           </LinearGradient>
         </TouchableOpacity>
         </LinearGradient>
@@ -87,6 +64,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 60,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  text: {
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
   },
@@ -139,12 +121,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius:10,
     opacity:0.5
-  },
-  signupButtonText: {
-    color: 'gray',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
+  }
+
 });
 
-export default LoginScreen;
+export default LogoutScreen;

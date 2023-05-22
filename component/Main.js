@@ -14,15 +14,13 @@ class MainScreen extends Component {
     };
   }
   componentDidMount() {
-    // console.log(this.props.route.params.data)
+    
   }
   reset_Nav = () => {
     this.props.navigation.reset({
       index: 0,
       routes: [
-
         { name: 'Login' }
-
       ],
     })
   }

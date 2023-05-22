@@ -1,38 +1,60 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ImageBackground } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ImageBackground, Image } from 'react-native';
 import React, { Component } from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import SignupScreen from './Signup';
 import MainScreen from './Main';
+import LoginScreen from './Logout';
 const Tab = createBottomTabNavigator();
-function MyTabBar({ navigation }) {
-  return (
-    <Button
-      title="Go somewhere"
-      onPress={() => {
-        // Navigate using the `navigation` prop that you received
-        navigation.navigate('SomeScreen');
-      }}
-    />
-  );
-}
+
 class MyTabs extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data :this.props.route.params.data
+    };
+  }
+  componentDidMount(){
+
+  }
+  componentDidUpdate(){
+    
+  }
   render() {
     return (
       <Tab.Navigator>
         <Tab.Screen name="Main" component={MainScreen}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={size} />
+              <Image
+                source={require('../img/home.png')}
+                style={{ tintColor: color, width: size, height: size }}
+              />
             ),
-          }} />
+          }}
+          
+          />
         <Tab.Screen name="Signup" component={SignupScreen} options={{
           title: "Đăng kí",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+            <Image
+              source={require('../img/registration.png')}
+              style={{ tintColor: color, width: size, height: size }}
+            />
           ),
         }}
-
+       
+        />
+        <Tab.Screen name="Logout" component={LoginScreen} options={{
+          title: "Đăng Xuất",
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require('../img/logout.png')}
+              style={{ tintColor: color, width: size, height: size }}
+            />
+          ),
+        }}
+        initialParams={{ data: this.state.data}}
         />
       </Tab.Navigator>
     );
