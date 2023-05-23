@@ -27,7 +27,6 @@ class LogoutScreen extends Component {
       colors={['#c6ffdd', '#fbd786','#f7797d']} 
       style={styles.container}
     >
-        
         <Text style={styles.title}>Log Out</Text>
         <Text style={styles.text} >{this.state.email}</Text>
         <TouchableOpacity style={styles.loginButton} onPress={this.HomeScreen}>
