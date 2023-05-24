@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
-import { NavigationActions, CommonActions } from 'react-navigation';
-import Camera from './Camera';
+// import Camera from './Camera';
 class MainScreen extends Component {
   constructor(props) {
     super(props);
@@ -185,10 +184,7 @@ class MainScreen extends Component {
           <TouchableOpacity style={styles.signupButton} onPress={this.check_secret_key}>
             <Text style={styles.signupButtonText}>Thay đổi id_thiết bị</Text>
           </TouchableOpacity>
-          <View style={styles.signupButton}>
-             <Camera></Camera>
-          </View>
-          
+
           
         </ScrollView>
       </View>

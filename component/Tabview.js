@@ -1,10 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ImageBackground, Image } from 'react-native';
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
 import SignupScreen from './Signup';
 import MainScreen from './Main';
 import LoginScreen from './Logout';
+import Camera from './Camera';
 const Tab = createBottomTabNavigator();
 
 class MyTabs extends Component {
@@ -15,10 +16,8 @@ class MyTabs extends Component {
     };
   }
   componentDidMount(){
-
   }
   componentDidUpdate(){
-    
   }
   render() {
     return (
@@ -56,7 +55,19 @@ class MyTabs extends Component {
         }}
         initialParams={{ data: this.state.data}}
         />
+        <Tab.Screen name="Camera" component={Camera} options={{
+          title: "Đăng kí",
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require('../img/registration.png')}
+              style={{ tintColor: color, width: size, height: size }}
+            />
+          ),
+        }}
+       
+        />
       </Tab.Navigator>
+      
     );
   }
 }

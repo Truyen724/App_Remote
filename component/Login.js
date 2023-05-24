@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet,Button,ImageBackground } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
-
 const image = '../img/login.jpg';
 class LoginScreen extends Component {
   constructor(props) {
