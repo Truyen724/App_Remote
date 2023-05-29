@@ -1,33 +1,64 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,Button,ImageBackground } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ScrollView , Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { CameraRoll } from "@react-native-camera-roll/camera-roll";
 const image = '../img/login.jpg';
 class ViewCamera extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        };
-      }
-openCamera = () =>{
-this.props.navigation.navigate('Cam')
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      photos:null
+    };
+  }
+  _handleButtonPress = () => {
+    CameraRoll.getPhotos({
+      first: 20,
+      assetType: 'Photos',
+    })
+      .then(r => {
+        this.setState({ photos: r.edges });
+      })
+      .catch((err) => {
+        //Error Loading Images
+      });
+  };
+  openCamera = () => {
+    this.props.navigation.navigate('Cam')
+  }
   render() {
     return (
-        <View style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.title}>This is Camera</Text>
         <Text style={styles.text} >{this.state.email}</Text>
         <TouchableOpacity style={styles.loginButton} onPress={this.openCamera}>
           <LinearGradient
-            colors={['#00fbfc','#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
+            colors={['#00fbfc', '#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
             style={styles.gradient}
-      >
-          <Text style={styles.signupButtonText}>Quay lại</Text>
+          >
+            <Text style={styles.signupButtonText}>Open Camera</Text>
           </LinearGradient>
         </TouchableOpacity>
+
         <View>
+          <Button title="Load Images" onPress={this._handleButtonPress} />
+          <ScrollView>
+            {this.state.photos &&
+            this.state.photos.map((p, i) => {
+              return (
+                <Image
+                  key={i}
+                  style={{
+                    width: 300,
+                    height: 100,
+                  }}
+                  source={{ uri: p.node.image.uri }}
+                />
+              );
+            })}
+          </ScrollView>
+
         </View>
-        </View>
+      </View>
     );
   }
 }
@@ -51,7 +82,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height:'100%',
+    height: '100%',
     fontSize: 60,
     fontWeight: 'bold',
     marginBottom: 20,
@@ -59,12 +90,12 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: 40,
-    
+
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
-    fontSize:19
+    fontSize: 19
   },
 
   loginButtonText: {
@@ -90,14 +121,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
     fontWeight: 'bold',
-    borderRadius:10
+    borderRadius: 10
   },
   gradient: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius:10,
-    opacity:0.5
+    borderRadius: 10,
+    opacity: 0.5
   }
 
 });

@@ -163,6 +163,7 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
     
     implementation project(':react-native-vector-icons')  
+    implementation project(':@react-native-camera-roll_camera-roll')
 
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
