@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import SignupScreen from './Signup';
 import MainScreen from './Main';
 import LoginScreen from './Logout';
-import Camera from './Camera';
+import ViewCamera from './ViewCamera';
 const Tab = createBottomTabNavigator();
 
 class MyTabs extends Component {
@@ -42,7 +42,17 @@ class MyTabs extends Component {
             />
           ),
         }}
-       
+        />
+
+        <Tab.Screen name="Camera" component={ViewCamera} options={{
+          title: "Camera",
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require('../img/camera.png')}
+              style={{ tintColor: color, width: size, height: size }}
+            />
+          ),
+        }}
         />
         <Tab.Screen name="Logout" component={LoginScreen} options={{
           title: "Đăng Xuất",
@@ -54,17 +64,6 @@ class MyTabs extends Component {
           ),
         }}
         initialParams={{ data: this.state.data}}
-        />
-        <Tab.Screen name="Camera" component={Camera} options={{
-          title: "Đăng kí",
-          tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require('../img/registration.png')}
-              style={{ tintColor: color, width: size, height: size }}
-            />
-          ),
-        }}
-       
         />
       </Tab.Navigator>
       

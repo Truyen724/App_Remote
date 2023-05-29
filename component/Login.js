@@ -30,11 +30,9 @@ componentDidMount()
 }
   render() {
     return (
-      <LinearGradient
-      colors={['#c6ffdd', '#fbd786','#f7797d']} 
-      style={styles.container}
-    >
-        
+      <View style={styles.container}>
+
+
         <Text style={styles.title}>Login</Text>
         <TextInput
           style={styles.input}
@@ -70,7 +68,8 @@ componentDidMount()
           <Text style={styles.signupButtonText}>Đăng ký</Text>
           </LinearGradient>
         </TouchableOpacity>
-        </LinearGradient>
+        </View>
+        
 
     );
   }

@@ -184,8 +184,6 @@ class MainScreen extends Component {
           <TouchableOpacity style={styles.signupButton} onPress={this.check_secret_key}>
             <Text style={styles.signupButtonText}>Thay đổi id_thiết bị</Text>
           </TouchableOpacity>
-
-          
         </ScrollView>
       </View>
     );
