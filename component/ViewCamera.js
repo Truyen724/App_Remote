@@ -7,12 +7,14 @@ class ViewCamera extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos:null
+      photos:null,
+      Number_of_photo :20
     };
+    
   }
   _handleButtonPress = () => {
     CameraRoll.getPhotos({
-      first: 20,
+      first: this.state.Number_of_photo,
       assetType: 'Photos',
     })
       .then(r => {
@@ -22,8 +24,13 @@ class ViewCamera extends Component {
         //Error Loading Images
       });
   };
+  _addImages = ()=> {
+    this.state.Number_of_photo +=30
+    this._handleButtonPress
+  }
   openCamera = () => {
-    this.props.navigation.navigate('Cam')
+    this.props.navigation.navigate('Cam');
+    this._handleButtonPress()
   }
   render() {
     return (
@@ -40,6 +47,7 @@ class ViewCamera extends Component {
         </TouchableOpacity>
 
         <View>
+          <Button title="Load more image" onPress={this._addImages}/>
           <Button title="Load Images" onPress={this._handleButtonPress} />
           <ScrollView>
             {this.state.photos &&
@@ -49,7 +57,7 @@ class ViewCamera extends Component {
                   key={i}
                   style={{
                     width: 300,
-                    height: 100,
+                    height: 300,
                   }}
                   source={{ uri: p.node.image.uri }}
                 />
