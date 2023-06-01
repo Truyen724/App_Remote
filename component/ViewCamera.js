@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ScrollView , Image} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ScrollView, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll";
+import Image_com from './image';
 const image = '../img/login.jpg';
 class ViewCamera extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos:null,
-      Number_of_photo :20
+      photos: null,
+      Number_of_photo: 20
     };
-    
   }
   _handleButtonPress = () => {
     CameraRoll.getPhotos({
@@ -19,18 +19,21 @@ class ViewCamera extends Component {
     })
       .then(r => {
         this.setState({ photos: r.edges });
+        console.log(r)
       })
       .catch((err) => {
         //Error Loading Images
       });
   };
-  _addImages = ()=> {
-    this.state.Number_of_photo +=30
-    this._handleButtonPress
+  _addImages = () => {
+    this.setState({
+      Number_of_photo: this.state.Number_of_photo + 20
+    })
+    console.log(this.state.Number_of_photo)
+    this._handleButtonPress()
   }
   openCamera = () => {
     this.props.navigation.navigate('Cam');
-    this._handleButtonPress()
   }
   render() {
     return (
@@ -45,27 +48,28 @@ class ViewCamera extends Component {
             <Text style={styles.signupButtonText}>Open Camera</Text>
           </LinearGradient>
         </TouchableOpacity>
-
-        <View>
-          <Button title="Load more image" onPress={this._addImages}/>
-          <Button title="Load Images" onPress={this._handleButtonPress} />
+       
+          <TouchableOpacity style={styles.loginButton} onPress={this._handleButtonPress}>
+            <LinearGradient
+              colors={['#00fbfc', '#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
+              style={styles.gradient}
+            >
+              <Text style={styles.signupButtonText}>Load Images</Text>
+            </LinearGradient>
+          </TouchableOpacity>
           <ScrollView>
             {this.state.photos &&
-            this.state.photos.map((p, i) => {
-              return (
-                <Image
-                  key={i}
-                  style={{
-                    width: 300,
-                    height: 300,
-                  }}
-                  source={{ uri: p.node.image.uri }}
-                />
-              );
-            })}
+              this.state.photos.map((p, i) => {
+                return (
+                  <Image_com
+                    key={i}
+                    url_image={p.node.image.uri}
+                    pref={this}
+                  />
+                );
+              })}
           </ScrollView>
-
-        </View>
+        
       </View>
     );
   }

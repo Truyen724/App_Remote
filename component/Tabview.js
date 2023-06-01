@@ -12,12 +12,12 @@ class MyTabs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data :this.props.route.params.data
+      data: this.props.route.params.data
     };
   }
-  componentDidMount(){
+  componentDidMount() {
   }
-  componentDidUpdate(){
+  componentDidUpdate() {
   }
   render() {
     return (
@@ -26,19 +26,21 @@ class MyTabs extends Component {
           options={{
             tabBarIcon: ({ color, size }) => (
               <Image
-                source={require('../img/home.png')}
                 style={{ tintColor: color, width: size, height: size }}
+                source={require('../img/home.png')}
+
               />
             ),
           }}
-          
-          />
+
+        />
         <Tab.Screen name="Signup" component={SignupScreen} options={{
           title: "Đăng kí",
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require('../img/registration.png')}
               style={{ tintColor: color, width: size, height: size }}
+              source={require('../img/registration.png')}
+
             />
           ),
         }}
@@ -48,8 +50,9 @@ class MyTabs extends Component {
           title: "Camera",
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require('../img/camera.png')}
               style={{ tintColor: color, width: size, height: size }}
+              source={require('../img/camera.png')}
+
             />
           ),
         }}
@@ -58,25 +61,17 @@ class MyTabs extends Component {
           title: "Đăng Xuất",
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require('../img/logout.png')}
               style={{ tintColor: color, width: size, height: size }}
+              source={require('../img/logout.png')}
+
             />
           ),
         }}
-        initialParams={{ data: this.state.data}}
+          initialParams={{ data: this.state.data }}
         />
       </Tab.Navigator>
-      
+
     );
   }
 }
 export default MyTabs
-const styles = StyleSheet.create({
-  header: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 40,
-    backgroundColor: "#1ef63d",
-    height: 100
-  }
-})

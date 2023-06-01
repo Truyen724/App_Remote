@@ -8,6 +8,7 @@ import MyTabs from './Tabview'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Camera from './Camera';
+import Image_com from './image';
 const Stack = createNativeStackNavigator();
 function AppMain() {
   return (
@@ -18,6 +19,7 @@ function AppMain() {
         <Stack.Screen name="Main" component={MainScreen} options={{headerShown : false}} />
         <Stack.Screen name="Mytab" component={MyTabs} options={{headerShown : false}} />
         <Stack.Screen name="Cam" component={Camera} options={{headerShown : false}} />
+        <Stack.Screen name="Image" component={Image_com} options={{headerShown : false}} />
       </Stack.Navigator>
     </NavigationContainer>
 
