@@ -27,8 +27,7 @@ class MyTabs extends Component {
             tabBarIcon: ({ color, size }) => (
               <Image
                 style={{ tintColor: color, width: size, height: size }}
-                source={require('../img/home.png')}
-
+                source={require('./../img/home.png')}
               />
             ),
           }}
@@ -38,9 +37,9 @@ class MyTabs extends Component {
           title: "Đăng kí",
           tabBarIcon: ({ color, size }) => (
             <Image
+            source={require('./../img/registration.png')}
               style={{ tintColor: color, width: size, height: size }}
-              source={require('../img/registration.png')}
-
+              
             />
           ),
         }}
@@ -51,7 +50,7 @@ class MyTabs extends Component {
           tabBarIcon: ({ color, size }) => (
             <Image
               style={{ tintColor: color, width: size, height: size }}
-              source={require('../img/camera.png')}
+              source={require('./../img/camera.png')}
 
             />
           ),
@@ -62,7 +61,7 @@ class MyTabs extends Component {
           tabBarIcon: ({ color, size }) => (
             <Image
               style={{ tintColor: color, width: size, height: size }}
-              source={require('../img/logout.png')}
+              source={require('./../img/logout.png')}
 
             />
           ),

@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ScrollView
 import LinearGradient from 'react-native-linear-gradient';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll";
 import Image_com from './image';
+import { PermissionsAndroid, Platform } from "react-native";
 const image = '../img/login.jpg';
 class ViewCamera extends Component {
   constructor(props) {
@@ -12,18 +13,38 @@ class ViewCamera extends Component {
       Number_of_photo: 20
     };
   }
+  async hasAndroidPermission() {
+    const permission = Platform.Version >= 33 ? PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES : PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
+  
+    const hasPermission = await PermissionsAndroid.check(permission);
+    if (hasPermission) {
+      return true;
+    }
+  
+    const status = await PermissionsAndroid.request(permission);
+    return status === 'granted';
+  }
+
   _handleButtonPress = () => {
+    if (Platform.OS === "android" && !(this.hasAndroidPermission())) {
+      return;
+    }
+    else
+    {
+
     CameraRoll.getPhotos({
       first: this.state.Number_of_photo,
       assetType: 'Photos',
     })
       .then(r => {
         this.setState({ photos: r.edges });
-        console.log(r)
+
       })
       .catch((err) => {
         //Error Loading Images
       });
+            
+    }
   };
   _addImages = () => {
     this.setState({
@@ -57,7 +78,7 @@ class ViewCamera extends Component {
               <Text style={styles.signupButtonText}>Load Images</Text>
             </LinearGradient>
           </TouchableOpacity>
-          <ScrollView>
+          <ScrollView style={styles.scroll}> 
             {this.state.photos &&
               this.state.photos.map((p, i) => {
                 return (
@@ -69,18 +90,16 @@ class ViewCamera extends Component {
                 );
               })}
           </ScrollView>
-        
       </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 40,
+
   },
   title: {
     fontSize: 60,
@@ -102,7 +121,6 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: 40,
-
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
@@ -128,7 +146,7 @@ const styles = StyleSheet.create({
   },
 
   loginButton: {
-    width: '70%',
+    width: '100%',
     height: 40,
     paddingHorizontal: 10,
     marginBottom: 10,
@@ -141,6 +159,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     opacity: 0.5
+  },
+  scroll: {
+    padding:0
   }
 
 });
