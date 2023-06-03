@@ -9,16 +9,21 @@ const Image_com = (props) => {
     <View style={styles.container}>
         <Image source={{ uri: url_image}}
          style={{
-                    width: 300,
+                    width: 360,
                     height: 300,
-                    
                   }}
                   >
         </Image>
         <View style={styles.Button}>
-          <Button  title='Delete'></Button>
-          <Button title='View'></Button>
-          <Button  title='Navigate'></Button>
+        <TouchableOpacity>
+                  <Text>View </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+                  <Text>Update</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+                  <Text>Delete</Text>
+        </TouchableOpacity>
         </View>
     </View>
     );
@@ -28,12 +33,13 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     flexDirection: 'column',
-    padding:20
+    padding:0
   },
   Button:{
     flex:1 ,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop:10
   }
 
 });

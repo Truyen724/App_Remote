@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,Button,ImageBackground } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ImageBackground } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { BackHandler } from 'react-native';
+
 const image = '../img/login.jpg';
 class LoginScreen extends Component {
   constructor(props) {
@@ -10,24 +12,31 @@ class LoginScreen extends Component {
       password: '123456',
     };
   }
-  handleSignup = () =>{
+  handleSignup = () => {
     this.props.navigation.navigate('Signup')
   }
   handleLogin = () => {
-    console.log('Đăng nhập với email:', this.state.email, 'và mật khẩu:',  this.state.password);
-    if(this.state.password=="123456")
-    {
-      this.props.navigation.replace('Mytab',{data:{email:this.state.email,password:this.state.password}})
+    console.log('Đăng nhập với email:', this.state.email, 'và mật khẩu:', this.state.password);
+    if (this.state.password == "123456") {
+      this.props.navigation.replace('Mytab', { data: { email: this.state.email, password: this.state.password } })
     }
-    else
-    {
+    else {
       console.log('Sai tài khoản hoặc mật khâu');
     }
   };
-componentDidMount()
-{
-  
-}
+  componentDidMount() {
+
+  }
+  exitApp = () => {
+    // Tắt ứng dụng
+    if (Platform.OS === 'android') {
+      BackHandler.exitApp();
+    } else {
+      // Xử lý tắt ứng dụng trên nền tảng iOS
+      // Ví dụ: AppState.exitApp()
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -51,25 +60,25 @@ componentDidMount()
 
         <TouchableOpacity style={styles.loginButton} onPress={this.handleLogin}>
           <LinearGradient
-            colors={['#00fbfc','#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
+            colors={['#00fbfc', '#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
             style={styles.gradient}
-      >
-          <Text style={styles.signupButtonText}>Đăng Nhập</Text>
+          >
+            <Text style={styles.signupButtonText}>Đăng Nhập</Text>
           </LinearGradient>
         </TouchableOpacity>
         <View>
         </View>
 
-        <TouchableOpacity style={styles.loginButton} onPress={this.handleSignup}>
+        <TouchableOpacity style={styles.loginButton} onPress={this.exitApp}>
           <LinearGradient
-            colors={['#00fbfc','#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
+            colors={['#00fbfc', '#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
             style={styles.gradient}
           >
-          <Text style={styles.signupButtonText}>Đăng ký</Text>
+            <Text style={styles.signupButtonText}>Thoát</Text>
           </LinearGradient>
         </TouchableOpacity>
-        </View>
-        
+      </View>
+
 
     );
   }
@@ -89,7 +98,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height:'100%',
+    height: '100%',
     fontSize: 60,
     fontWeight: 'bold',
     marginBottom: 20,
@@ -97,12 +106,12 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: 40,
-    
+
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
-    fontSize:19
+    fontSize: 19
   },
 
   loginButtonText: {
@@ -128,14 +137,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
     fontWeight: 'bold',
-    borderRadius:10
+    borderRadius: 10
   },
   gradient: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius:10,
-    opacity:0.5
+    borderRadius: 10,
+    opacity: 0.5
   },
   signupButtonText: {
     color: 'gray',

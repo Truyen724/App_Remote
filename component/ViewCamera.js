@@ -58,6 +58,7 @@ class ViewCamera extends Component {
   }
   render() {
     return (
+      <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>This is Camera</Text>
         <Text style={styles.text} >{this.state.email}</Text>
@@ -91,6 +92,7 @@ class ViewCamera extends Component {
               })}
           </ScrollView>
       </View>
+      </ScrollView>
     );
   }
 }
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     opacity: 0.5
   },
   scroll: {
-    padding:0
+    flex:1
   }
 
 });
