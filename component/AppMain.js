@@ -4,6 +4,7 @@ import  {FlatList, View,Text} from 'react-native';
 import LoginScreen from './Login';
 import SignupScreen from './Signup';
 import MainScreen  from './Main';
+
 import MyTabs from './Tabview'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -19,7 +20,6 @@ function AppMain() {
         <Stack.Screen name="Main" component={MainScreen} options={{headerShown : false}} />
         <Stack.Screen name="Mytab" component={MyTabs} options={{headerShown : false}} />
         <Stack.Screen name="Cam" component={Camera} options={{headerShown : false}} />
-        <Stack.Screen name="Image" component={Image_com} options={{headerShown : false}} />
       </Stack.Navigator>
     </NavigationContainer>
 

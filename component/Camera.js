@@ -12,17 +12,15 @@ async function hasAndroidPermission() {
   if (hasPermission) {
     return true;
   }
-
   const status = await PermissionsAndroid.request(permission);
   return status === 'granted';
 }
-async function savePicture() {
-
-};
-
 class Camera extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      cameraType : RNCamera.Constants.Type.back,
+    }
   }
   takePicture = async () => {
     try {
@@ -36,7 +34,17 @@ class Camera extends Component {
       console.log('err: ', err);
     }
   };
-
+  switchCamera = () => {
+    const { cameraType } = this.state;
+    const newCameraType =
+      cameraType === RNCamera.Constants.Type.back
+        ? RNCamera.Constants.Type.front
+        : RNCamera.Constants.Type.back;
+    this.setState({ cameraType: newCameraType });
+  };
+  go_back=()=>{
+    this.props.navigation.navigate('Camera')
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -45,12 +53,26 @@ class Camera extends Component {
             this.camera = cam;
           }}
           style={styles.preview}
+          ratio="4:3"
+          type={this.state.cameraType}
         >
         </RNCamera>
         <View style={styles.space} >
+          <TouchableOpacity style={styles.capture} onPress={this.go_back}>
+            <Image
+              source={require('../img/turn-back.png')}
+              style={styles.image}
+            />
+          </TouchableOpacity>
           <TouchableOpacity style={styles.capture} onPress={this.takePicture}>
             <Image
               source={require('../img/camera.png')}
+              style={styles.image}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.capture} onPress={this.switchCamera}>
+            <Image
+              source={require('../img/switch-camera.png')}
               style={styles.image}
             />
           </TouchableOpacity>
@@ -64,11 +86,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding:0,
+    marginBottom:50
   },        
   space: {
+    flex:0,
+    flexDirection:'row',
     justifyContent: 'center',
     alignItems: 'center',
-    height: "25%",
+  
+    // backgroundColor:"black"
   }
   ,
   preview: {
@@ -78,11 +105,14 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   capture: {
-    flex: 1
+    flex: 0,
+    paddingLeft:30,
+    paddingRight:30,
+    paddingTop:10,
   },
   image: {
-    width: 70,
-    height: 70,
+    width:50,
+    height: 50,
     // alignSelf: "flex-end"
   }
 });
