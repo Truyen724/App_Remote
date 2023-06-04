@@ -62,6 +62,7 @@ class ViewCamera extends Component {
       <View style={styles.container}>
         <Text style={styles.title}>This is Camera</Text>
         <Text style={styles.text} >{this.state.email}</Text>
+
         <TouchableOpacity style={styles.loginButton} onPress={this.openCamera}>
           <LinearGradient
             colors={['#00fbfc', '#edd8eb']} // Màu gradient theo thứ tự từ trên xuống
@@ -104,9 +105,9 @@ const styles = StyleSheet.create({
 
   },
   title: {
-    fontSize: 60,
+    fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 20,
+    margin: 20,
   },
   text: {
     fontSize: 20,
@@ -163,7 +164,8 @@ const styles = StyleSheet.create({
     opacity: 0.5
   },
   scroll: {
-    flex:1
+    flex:1,
+    marginBottom:10
   }
 
 });

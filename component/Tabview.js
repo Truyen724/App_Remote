@@ -31,7 +31,6 @@ class MyTabs extends Component {
               />
             ),
           }}
-
         />
         <Tab.Screen name="Signup" component={SignupScreen} options={{
           title: "Đăng kí",
@@ -44,14 +43,13 @@ class MyTabs extends Component {
           ),
         }}
         />
-
         <Tab.Screen name="Camera" component={ViewCamera} options={{
           title: "Camera",
+          headerShown:false,
           tabBarIcon: ({ color, size }) => (
             <Image
               style={{ tintColor: color, width: size, height: size }}
               source={require('./../img/camera.png')}
-
             />
           ),
         }}

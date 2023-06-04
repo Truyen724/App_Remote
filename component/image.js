@@ -33,13 +33,15 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     flexDirection: 'column',
-    padding:0
+    padding:0,
+    
   },
   Button:{
     flex:1 ,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop:10
+    padding:20,
+    marginBottom:20
   }
 
 });
