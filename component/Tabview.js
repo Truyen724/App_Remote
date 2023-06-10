@@ -22,6 +22,19 @@ class MyTabs extends Component {
   render() {
     return (
       <Tab.Navigator>
+
+
+        <Tab.Screen name="Camera" component={ViewCamera} options={{
+          title: "Camera",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              style={{ tintColor: color, width: size, height: size }}
+              source={require('./../img/camera.png')}
+            />
+          ),
+        }}
+        />
         <Tab.Screen name="Main" component={MainScreen}
           options={{
             tabBarIcon: ({ color, size }) => (
@@ -36,20 +49,9 @@ class MyTabs extends Component {
           title: "Đăng kí",
           tabBarIcon: ({ color, size }) => (
             <Image
-            source={require('./../img/registration.png')}
+              source={require('./../img/registration.png')}
               style={{ tintColor: color, width: size, height: size }}
-              
-            />
-          ),
-        }}
-        />
-        <Tab.Screen name="Camera" component={ViewCamera} options={{
-          title: "Camera",
-          headerShown:false,
-          tabBarIcon: ({ color, size }) => (
-            <Image
-              style={{ tintColor: color, width: size, height: size }}
-              source={require('./../img/camera.png')}
+
             />
           ),
         }}

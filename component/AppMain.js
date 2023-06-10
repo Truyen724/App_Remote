@@ -22,7 +22,6 @@ function AppMain() {
         <Stack.Screen name="Cam" component={Camera} options={{headerShown : false}} />
       </Stack.Navigator>
     </NavigationContainer>
-
   )
 }
 

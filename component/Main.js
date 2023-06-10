@@ -112,8 +112,7 @@ class MainScreen extends Component {
       }
       const data = await response.text();
       console.log(data);
-      Alert.alert("Looxiii rồi ")
-
+      Alert.alert(data)
     }
     catch {
       // console.error(error);
@@ -146,15 +145,21 @@ class MainScreen extends Component {
             value={this.state.wifiname}
             onChangeText={(wifiname) => this.setState({ wifiname })}
           />
+          <TouchableOpacity style={styles.signupButton} onPress={this.set_wifi && this.set_password}>
+            <Text style={styles.signupButtonText}>Thiết lập tên wifi</Text>
+          </TouchableOpacity>
+          <View style={{ marginTop: 20 }}></View>
           <TextInput
             style={styles.input}
             placeholder="Nhập mật khẩu wifi"
             value={this.state.password}
             onChangeText={(password) => this.setState({ password })}
           />
-          <TouchableOpacity style={styles.signupButton} onPress={this.set_wifi && this.set_password}>
+          
+          <TouchableOpacity style={styles.signupButton} onPress={ this.set_password}>
             <Text style={styles.signupButtonText}>Kết nối tới wifi</Text>
           </TouchableOpacity>
+
           <View style={{ marginTop: 20 }}></View>
           <Text style={styles.title}> Thiết lập Server</Text>
           <TextInput
