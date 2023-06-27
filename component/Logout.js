@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,Button,ImageBackground } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,Button,ImageBackground ,ScrollView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 const image = '../img/login.jpg';
 class LogoutScreen extends Component {
@@ -7,12 +7,14 @@ class LogoutScreen extends Component {
         super(props);
         this.state = {
             email:this.props.route.params.data.email,
-            password:this.props.route.params.data.password
+            password:this.props.route.params.data.password,
+            accessToken:this.props.route.params.data.accessToken,
         };
       }
       componentDidMount()
       {
         console.log(this.state.email);
+        console.log(this.state.accessToken);
       }
       HomeScreen = () => {
         this.props.navigation.navigate('Main')
@@ -23,11 +25,14 @@ class LogoutScreen extends Component {
       }
   render() {
     return (
+    <ScrollView>
+
+
       <LinearGradient
       colors={['#c6ffdd', '#fbd786','#f7797d']} 
       style={styles.container}
     >
-        <Text style={styles.title}>Log Out</Text>
+        <Text style={styles.title}>{this.state.accessToken}</Text>
         <Text style={styles.text} >{this.state.email}</Text>
         <TouchableOpacity style={styles.loginButton} onPress={this.HomeScreen}>
           <LinearGradient
@@ -49,7 +54,7 @@ class LogoutScreen extends Component {
           </LinearGradient>
         </TouchableOpacity>
         </LinearGradient>
-
+        </ScrollView>
     );
   }
 }

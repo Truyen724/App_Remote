@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ImageBackground, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ImageBackground, Image ,Alert} from 'react-native';
 import React, { Component } from 'react';
 
 import SignupScreen from './Signup';
@@ -18,12 +18,11 @@ class MyTabs extends Component {
   componentDidMount() {
   }
   componentDidUpdate() {
+    
   }
   render() {
     return (
       <Tab.Navigator>
-
-
         <Tab.Screen name="Camera" component={ViewCamera} options={{
           title: "Camera",
           headerShown: false,

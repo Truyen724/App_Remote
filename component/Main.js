@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// eslint-disable-next-line prettier/prettier
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
 // import Camera from './Camera';
 class MainScreen extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ImageBackground } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button, ImageBackground, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { BackHandler } from 'react-native';
 
@@ -8,22 +8,40 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: 'Truyen',
-      password: '123456',
+      email: 'truyen',
+      password: 'ntt2432001',
+      accessToken: 'undefined'
     };
   }
   handleSignup = () => {
     this.props.navigation.navigate('Signup')
   }
   handleLogin = () => {
-    console.log('Đăng nhập với email:', this.state.email, 'và mật khẩu:', this.state.password);
-    if (this.state.password == "123456") {
-      this.props.navigation.replace('Mytab', { data: { email: this.state.email, password: this.state.password } })
-    }
-    else {
-      console.log('Sai tài khoản hoặc mật khâu');
-    }
-  };
+    fetch('http://116.118.49.43:3000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.email,
+        password: this.state.password
+      }),
+    }).then((response) => response.json())
+      .then((data) => {
+
+        if (data.hasOwnProperty('accessToken')) {
+          this.state.accessToken = data.accessToken;
+          console.log(this.state.accessToken);
+          Alert.alert('Đăng nhập thành công');
+          this.props.navigation.replace('Mytab', { data: { email: this.state.email, password: this.state.password, accessToken: this.state.accessToken } })
+        }
+        else {
+          Alert.alert('Sai tài khoản mật khẩu');
+        }
+
+      });
+  }
   componentDidMount() {
 
   }
